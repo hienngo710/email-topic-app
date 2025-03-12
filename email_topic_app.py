@@ -20,7 +20,7 @@ def get_email_topic(email_body):
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "Identify the main topic of this email in 1-10 words."},
+            {"role": "system", "content": "Identify the main topic of this email in 1-4 words. Use these categories if applicable: complaint, product, pricing, internal, other."},
             {"role": "user", "content": f"Email body: {email_body}"}
         ],
         max_tokens=10,
