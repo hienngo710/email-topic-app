@@ -1,12 +1,16 @@
 import os
 from dotenv import load_dotenv
-load_dotenv()
 import streamlit as st
 import pandas as pd
 from openai import OpenAI
 
-## api_key = os.getenv("OPENAI_API_KEY")
-client = OpenAI(api_key='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')
+# Load environment variables
+load_dotenv()
+api_key = os.getenv("OPENAI_API_KEY")
+if not api_key:
+    st.error("OpenAI API key not found. Check your .env file.")
+else:
+    client = OpenAI(api_key=api_key)
 
 def get_email_topic(email_body):
     response = client.chat.completions.create(
